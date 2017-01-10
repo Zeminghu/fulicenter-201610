@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/1/9.334433
+ * Created by Administrator on 2017/1/9.334433789
  */
 
 public class PropertiesBean implements Serializable{
