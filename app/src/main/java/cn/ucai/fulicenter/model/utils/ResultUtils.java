@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.ucai.fulicenter.application.I;
-import cn.ucai.fulicenter.bean.CartBean;
-import cn.ucai.fulicenter.bean.GoodsDetailsBean;
-import cn.ucai.fulicenter.bean.Result;
+import cn.ucai.fulicenter.model.bean.CartBean;
+import cn.ucai.fulicenter.model.bean.GoodsDetailsBean;
+import cn.ucai.fulicenter.model.bean.Result;
 
 public class ResultUtils {
     public static <T> Result getResultFromJson(String jsonStr, Class<T> clazz){

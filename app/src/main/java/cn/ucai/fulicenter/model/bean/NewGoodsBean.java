@@ -1,4 +1,4 @@
-package cn.ucai.fulicenter.bean;
+package cn.ucai.fulicenter.model.bean;
 
 import java.io.Serializable;
 
@@ -200,5 +200,30 @@ public class NewGoodsBean implements Serializable {
 
     public void setPromote(boolean promote) {
         this.promote = promote;
+    }
+
+    @Override
+    public String toString() {
+        return "NewGoodsBean{" +
+                "id=" + id +
+                ", goodsId=" + goodsId +
+                ", catId=" + catId +
+                ", goodsName='" + goodsName + '\'' +
+                ", goodsEnglishName='" + goodsEnglishName + '\'' +
+                ", goodsBrief='" + goodsBrief + '\'' +
+                ", shopPrice='" + shopPrice + '\'' +
+                ", currencyPrice='" + currencyPrice + '\'' +
+                ", promotePrice='" + promotePrice + '\'' +
+                ", rankPrice='" + rankPrice + '\'' +
+                ", isPromote=" + isPromote +
+                ", goodsThumb='" + goodsThumb + '\'' +
+                ", goodsImg='" + goodsImg + '\'' +
+                ", colorId=" + colorId +
+                ", colorName='" + colorName + '\'' +
+                ", colorCode='" + colorCode + '\'' +
+                ", colorUrl='" + colorUrl + '\'' +
+                ", addTime=" + addTime +
+                ", promote=" + promote +
+                '}';
     }
 }

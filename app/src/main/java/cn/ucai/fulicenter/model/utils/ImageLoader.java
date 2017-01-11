@@ -15,7 +15,7 @@ import java.net.URLEncoder;
 
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.application.I;
-import cn.ucai.fulicenter.bean.User;
+import cn.ucai.fulicenter.model.bean.User;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;

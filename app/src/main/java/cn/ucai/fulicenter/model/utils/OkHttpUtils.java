@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 
 import cn.ucai.fulicenter.application.FuLiCenterApplication;
 import cn.ucai.fulicenter.application.I;
-import cn.ucai.fulicenter.bean.Result;
+import cn.ucai.fulicenter.model.bean.Result;
 import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.Callback;
