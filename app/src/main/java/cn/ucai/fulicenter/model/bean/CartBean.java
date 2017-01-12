@@ -2,29 +2,14 @@ package cn.ucai.fulicenter.model.bean;
 
 import java.io.Serializable;
 
-/**
- * Created by Administrator on 2017/1/9.
- */
-
 public class CartBean implements Serializable {
 
-    /**
-     * id : 35
-     * userName : a952702
-     * goodsId : 7677
-     * goods : null
-     * count : 2
-     * isChecked : false
-     * checked : false
-     */
-
-    private int id;
+    private int id=0;
     private String userName;
     private int goodsId;
-    private Object goods;
     private int count;
     private boolean isChecked;
-    private boolean checked;
+    private GoodsDetailsBean goods;
 
     public int getId() {
         return id;
@@ -50,14 +35,6 @@ public class CartBean implements Serializable {
         this.goodsId = goodsId;
     }
 
-    public Object getGoods() {
-        return goods;
-    }
-
-    public void setGoods(Object goods) {
-        this.goods = goods;
-    }
-
     public int getCount() {
         return count;
     }
@@ -66,19 +43,51 @@ public class CartBean implements Serializable {
         this.count = count;
     }
 
-    public boolean isIsChecked() {
+    public boolean isChecked() {
         return isChecked;
     }
 
-    public void setIsChecked(boolean isChecked) {
-        this.isChecked = isChecked;
-    }
-
-    public boolean isChecked() {
-        return checked;
-    }
-
     public void setChecked(boolean checked) {
-        this.checked = checked;
+        this.isChecked = checked;
+    }
+
+    public GoodsDetailsBean getGoods() {
+        return goods;
+    }
+
+    public void setGoods(GoodsDetailsBean goods) {
+        this.goods = goods;
+    }
+
+
+    public CartBean() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CartBean)) return false;
+
+        CartBean cartBean = (CartBean) o;
+
+        return getId() == cartBean.getId();
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getId();
+    }
+
+    @Override
+    public String toString() {
+        return "CartBean{" +
+                "id=" + id +
+                ", userName=" + userName +
+                ", goodsId=" + goodsId +
+                ", count=" + count +
+                ", checked=" + isChecked +
+                ", goods='" + goods + '\'' +
+                '}';
     }
 }

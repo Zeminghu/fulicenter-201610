@@ -51,4 +51,14 @@ public class AlbumsBean implements Serializable{
     public void setThumbUrl(String thumbUrl) {
         this.thumbUrl = thumbUrl;
     }
+
+    @Override
+    public String toString() {
+        return "AlbumsBean{" +
+                "pid=" + pid +
+                ", imgId=" + imgId +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", thumbUrl='" + thumbUrl + '\'' +
+                '}';
+    }
 }

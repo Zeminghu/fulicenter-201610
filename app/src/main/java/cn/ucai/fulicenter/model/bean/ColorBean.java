@@ -2,42 +2,28 @@ package cn.ucai.fulicenter.model.bean;
 
 import java.io.Serializable;
 
-/**
- * Created by Administrator on 2017/1/9.
- */
-
 public class ColorBean implements Serializable {
 
     /**
-     * id : 8453
-     * goodsId : 0
-     * colorId : 5
-     * colorName : 紫色
-     * colorCode : #a658d1
-     * colorImg : 201309/1380065007479814548.jpg
+     * catId : 262
+     * colorId : 1
+     * colorName : 灰色
+     * colorCode : #959595
+     * colorImg : 121.197.1.20/images/201309/1380064809234134935.jpg
      */
 
-    private int id;
-    private int goodsId;
+    private int catId;
     private int colorId;
     private String colorName;
     private String colorCode;
     private String colorImg;
 
-    public int getId() {
-        return id;
+    public int getCatId() {
+        return catId;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getGoodsId() {
-        return goodsId;
-    }
-
-    public void setGoodsId(int goodsId) {
-        this.goodsId = goodsId;
+    public void setCatId(int catId) {
+        this.catId = catId;
     }
 
     public int getColorId() {
@@ -75,8 +61,7 @@ public class ColorBean implements Serializable {
     @Override
     public String toString() {
         return "ColorBean{" +
-                "id=" + id +
-                ", goodsId=" + goodsId +
+                "catId=" + catId +
                 ", colorId=" + colorId +
                 ", colorName='" + colorName + '\'' +
                 ", colorCode='" + colorCode + '\'' +

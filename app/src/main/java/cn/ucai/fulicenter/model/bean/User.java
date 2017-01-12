@@ -1,12 +1,13 @@
 package cn.ucai.fulicenter.model.bean;
 
-import java.io.Serializable;
+
+import cn.ucai.fulicenter.application.I;
 
 /**
- * Created by Administrator on 2017/1/9.
+ * Created by clawpo on 2016/10/21.
  */
 
-public class User implements Serializable {
+public class User {
 
     /**
      * muserName : a952700
@@ -15,7 +16,7 @@ public class User implements Serializable {
      * mavatarPath : user_avatar
      * mavatarSuffix : .jpg
      * mavatarType : 0
-     * mavatarLastUpdateTime : 1478492451603
+     * mavatarLastUpdateTime : 1476262984280
      */
 
     private String muserName;
@@ -59,7 +60,7 @@ public class User implements Serializable {
     }
 
     public String getMavatarSuffix() {
-        return mavatarSuffix;
+        return mavatarSuffix!=null?mavatarSuffix: I.AVATAR_SUFFIX_JPG;
     }
 
     public void setMavatarSuffix(String mavatarSuffix) {
