@@ -24,23 +24,6 @@ import cn.ucai.fulicenter.view.FooterViewHolder;
  */
 
 
-import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import cn.ucai.fulicenter.R;
-import cn.ucai.fulicenter.application.I;
-import cn.ucai.fulicenter.model.bean.NewGoodsBean;
-import cn.ucai.fulicenter.model.utils.ImageLoader;
-import cn.ucai.fulicenter.view.FooterViewHolder;
 
 /**
  * Created by Administrator on 2017/1/11 0011.
@@ -112,8 +95,7 @@ public class GoodsAdapter extends RecyclerView.Adapter {
         if (mList != null) {
             mList.clear();
         }
-        mList.addAll(list);
-        notifyDataSetChanged();
+        addData(list);
     }
 
     public void addData(ArrayList<NewGoodsBean> list) {

@@ -9,11 +9,11 @@ import android.widget.RadioButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.ucai.fulicenter.controller.fragment.BoutiqueFragment;
 import cn.ucai.fulicenter.controller.fragment.NewGoodsFragment;
 
 public class MainActivity extends AppCompatActivity {
     int index, currentIndex;
-    RadioButton rbNewGoods, rbBoutique, rbCategory, rbCart, rbPersonal;
     RadioButton[] rbs = new RadioButton[5];
     @BindView(R.id.layout_new_good)
     RadioButton layoutNewGood;
@@ -26,7 +26,10 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.layout_personal_center)
     RadioButton layoutPersonalCenter;
 
+    Fragment[] mFragments = new Fragment[5];
     NewGoodsFragment mNewGoodsFragment;
+    BoutiqueFragment mBoutiqueFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +47,15 @@ public class MainActivity extends AppCompatActivity {
         rbs[4] = layoutPersonalCenter;
 
         mNewGoodsFragment = new NewGoodsFragment();
+        mBoutiqueFragment = new BoutiqueFragment();
+        mFragments[0] = mNewGoodsFragment;
+        mFragments[1] = mBoutiqueFragment;
+
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container,mNewGoodsFragment)
+                .add(R.id.fragment_container, mNewGoodsFragment)
+                .add(R.id.fragment_container, mBoutiqueFragment)
                 .show(mNewGoodsFragment)
+                .hide(mBoutiqueFragment)
                 .commit();
     }
 
@@ -69,10 +78,18 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 //        setRadioStatus();
+        setFragmentListener();
         if (index != currentIndex) {
             setRadioStatus();
         }
+
     }
+
+    private void setFragmentListener() {
+        getSupportFragmentManager().beginTransaction().show(mFragments[index])
+                .hide(mFragments[currentIndex]).commit();
+    }
+
 
     private void setRadioStatus() {
         for (int i = 0; i < rbs.length; i++) {

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +30,7 @@ import cn.ucai.fulicenter.model.net.OnCompleteListener;
 import cn.ucai.fulicenter.model.utils.CommonUtils;
 import cn.ucai.fulicenter.model.utils.ConvertUtils;
 import cn.ucai.fulicenter.model.utils.L;
+import cn.ucai.fulicenter.view.SpaceItemDecoration;
 
 import static android.R.attr.action;
 import static cn.ucai.fulicenter.R.id.rv;
@@ -61,6 +64,7 @@ public class NewGoodsFragment extends Fragment {
         model.downData(getContext(), I.CAT_ID, pageId, new OnCompleteListener<NewGoodsBean[]>() {
             @Override
             public void onSuccess(NewGoodsBean[] result) {
+                Log.e("NewGoodsFragment", Arrays.toString(result));
                 mSrl.setRefreshing(false);
                 mTvRefresh.setVisibility(View.GONE);
                 mAdapter.setMore(true);
@@ -74,9 +78,9 @@ public class NewGoodsFragment extends Fragment {
                     }
                     if (list.size() < I.PAGE_SIZE_DEFAULT) {
                         mAdapter.setMore(false);
-                    } else {
-                        mAdapter.setMore(false);
                     }
+                }else {
+                    mAdapter.setMore(false);
                 }
 
 
@@ -101,6 +105,7 @@ public class NewGoodsFragment extends Fragment {
                 getResources().getColor(R.color.google_yellow),
                 getResources().getColor(R.color.google_red));
         gm = new GridLayoutManager(getContext(), I.COLUM_NUM);
+        mRv.addItemDecoration(new SpaceItemDecoration(12));
         mRv.setLayoutManager(gm);
         mRv.setHasFixedSize(true);
         mAdapter = new GoodsAdapter(getContext(), mList);
