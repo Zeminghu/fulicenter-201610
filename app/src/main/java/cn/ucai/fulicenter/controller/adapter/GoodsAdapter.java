@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class GoodsAdapter extends RecyclerView.Adapter {
 
 
     public GoodsAdapter(Context context, ArrayList<NewGoodsBean> list) {
-        this.mContext = context;
+        mContext = context;
         mList = new ArrayList<>();
         mList.addAll(list);
     }
@@ -88,7 +89,7 @@ public class GoodsAdapter extends RecyclerView.Adapter {
 
         } else {
             GoodsViewHolder vh = (GoodsViewHolder) holder;
-            ImageLoader.downloadImg(mContext, vh.ivGoodsThume, mList.get(position).getGoodsThumb());
+            ImageLoader.downloadImg(mContext, vh.ivGoodsThumb, mList.get(position).getGoodsThumb());
             vh.tvGoodsName.setText(mList.get(position).getGoodsName());
             vh.tvGoodsPrice.setText(mList.get(position).getCurrencyPrice());
         }
@@ -104,7 +105,7 @@ public class GoodsAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return mList.size()+1;
     }
 
     public void initData(ArrayList<NewGoodsBean> list) {
@@ -116,6 +117,8 @@ public class GoodsAdapter extends RecyclerView.Adapter {
     }
 
     public void addData(ArrayList<NewGoodsBean> list) {
+        mList.addAll(list);
+        notifyDataSetChanged();
     }
 
     public int getFooterString() {
@@ -125,12 +128,14 @@ public class GoodsAdapter extends RecyclerView.Adapter {
 
 
     static class GoodsViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.ivGoodsThume)
-        ImageView ivGoodsThume;
+        @BindView(R.id.ivGoodsThumb)
+        ImageView ivGoodsThumb;
         @BindView(R.id.tvGoodsName)
         TextView tvGoodsName;
         @BindView(R.id.tvGoodsPrice)
         TextView tvGoodsPrice;
+        @BindView(R.id.layout_goods)
+        LinearLayout mLayoutGoods;
 
         GoodsViewHolder(View view) {
             super(view);

@@ -1,6 +1,7 @@
 package cn.ucai.fulicenter;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
@@ -8,6 +9,7 @@ import android.widget.RadioButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.ucai.fulicenter.controller.fragment.NewGoodsFragment;
 
 public class MainActivity extends AppCompatActivity {
     int index, currentIndex;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.layout_personal_center)
     RadioButton layoutPersonalCenter;
 
+    NewGoodsFragment mNewGoodsFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
         rbs[2] = layoutCategory;
         rbs[3] = layoutCart;
         rbs[4] = layoutPersonalCenter;
+
+        mNewGoodsFragment = new NewGoodsFragment();
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment_container,mNewGoodsFragment)
+                .show(mNewGoodsFragment)
+                .commit();
     }
 
     public void onCheckedChange(View view) {
@@ -59,7 +68,10 @@ public class MainActivity extends AppCompatActivity {
                 index = 4;
                 break;
         }
-        setRadioStatus();
+//        setRadioStatus();
+        if (index != currentIndex) {
+            setRadioStatus();
+        }
     }
 
     private void setRadioStatus() {
@@ -73,7 +85,5 @@ public class MainActivity extends AppCompatActivity {
         currentIndex = index;
     }
 
-    @OnClick(R.id.mainLayout)
-    public void onClick() {
-    }
+
 }

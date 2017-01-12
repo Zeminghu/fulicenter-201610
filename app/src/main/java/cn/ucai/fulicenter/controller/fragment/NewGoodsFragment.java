@@ -145,23 +145,13 @@ public class NewGoodsFragment extends Fragment {
     }
 
     private void setPullDownListener() {
-        mRv.setOnScrollListener(new RecyclerView.OnScrollListener(){
+        mSrl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                int lastPosition = gm.findLastVisibleItemPosition();
-                if (newState == RecyclerView.SCROLL_STATE_IDLE
-                        && lastPosition == mAdapter.getItemCount() - 1
-                        && mAdapter.isMore()) {
-                    pageId++;
-                    initData(I.ACTION_PULL_UP);
-                }
-            }
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                int firstPosition = gm.findFirstVisibleItemPosition();
-                mSrl.setEnabled(firstPosition==0);
+            public void onRefresh() {
+                mSrl.setRefreshing(true);
+                mTvRefresh.setVisibility(View.VISIBLE);
+                pageId=1;
+                initData(I.ACTION_PULL_DOWN);
             }
         });
     }
