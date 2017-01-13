@@ -21,6 +21,7 @@ public class CategoryChildActivity extends AppCompatActivity {
         mNewGoodsFragment=new NewGoodsFragment();
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container,mNewGoodsFragment)
+
                 .commit();
     }
 
