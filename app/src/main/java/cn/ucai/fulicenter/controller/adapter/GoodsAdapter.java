@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,7 +19,9 @@ import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.application.I;
 import cn.ucai.fulicenter.model.bean.NewGoodsBean;
 import cn.ucai.fulicenter.model.utils.ImageLoader;
+import cn.ucai.fulicenter.model.utils.L;
 import cn.ucai.fulicenter.view.FooterViewHolder;
+import cn.ucai.fulicenter.view.MFGT;
 
 /**
  * Created by Administrator on 2017/1/11.
@@ -65,16 +69,22 @@ public class GoodsAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder,final int position) {
         if (getItemViewType(position) == I.TYPE_FOOTER) {
             FooterViewHolder vh = (FooterViewHolder) holder;
             vh.setFooterString(mContext.getString(getFooterString()));
 
         } else {
             GoodsViewHolder vh = (GoodsViewHolder) holder;
-            ImageLoader.downloadImg(mContext, vh.ivGoodsThumb, mList.get(position).getGoodsThumb());
-            vh.tvGoodsName.setText(mList.get(position).getGoodsName());
-            vh.tvGoodsPrice.setText(mList.get(position).getCurrencyPrice());
+            ImageLoader.downloadImg(mContext, vh.mIvGoodsThumb, mList.get(position).getGoodsThumb());
+            vh.mTvGoodsName.setText(mList.get(position).getGoodsName());
+            vh.mTvGoodsPrice.setText(mList.get(position).getCurrencyPrice());
+            vh.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MFGT.gotoGoodsDetail(mContext,mList.get(position).getGoodsId());
+                }
+            });
         }
     }
 
@@ -96,6 +106,7 @@ public class GoodsAdapter extends RecyclerView.Adapter {
             mList.clear();
         }
         addData(list);
+        notifyDataSetChanged();
     }
 
     public void addData(ArrayList<NewGoodsBean> list) {
@@ -104,18 +115,46 @@ public class GoodsAdapter extends RecyclerView.Adapter {
     }
 
     public int getFooterString() {
-
         return isMore?R.string.load_more:R.string.no_more;
     }
 
-
+public void sortGoods(final int sortBy){
+    Collections.sort(mList, new Comparator<NewGoodsBean>() {
+        @Override
+        public int compare(NewGoodsBean leftBean, NewGoodsBean rightBean) {
+            int result=0;
+            switch(sortBy){
+                case I.SORT_BY_ADDTIME_ASC:
+                    result=(int) (leftBean.getAddTime()-rightBean.getAddTime());
+                    break;
+                case I.SORT_BY_ADDTIME_DESC:
+                    result=(int)(rightBean.getAddTime()-leftBean.getAddTime());
+                    break;
+                case I.SORT_BY_PRICE_ASC:
+                    result=getPrice(leftBean.getCurrencyPrice())-getPrice(rightBean.getCurrencyPrice());
+                    break;
+                case I.SORT_BY_PRICE_DESC:
+                    result=getPrice(rightBean.getCurrencyPrice())-getPrice(leftBean.getCurrencyPrice());
+                    break;
+            }
+            return result;
+        }
+    });
+    notifyDataSetChanged();
+}
+    int getPrice(String price){
+        int p=0;
+        p=Integer.valueOf(price.substring(price.indexOf("￥")+1));
+        L.e("adapter","p="+p);
+        return p;
+    }
     static class GoodsViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.ivGoodsThumb)
-        ImageView ivGoodsThumb;
+        ImageView mIvGoodsThumb;
         @BindView(R.id.tvGoodsName)
-        TextView tvGoodsName;
+        TextView mTvGoodsName;
         @BindView(R.id.tvGoodsPrice)
-        TextView tvGoodsPrice;
+        TextView mTvGoodsPrice;
         @BindView(R.id.layout_goods)
         LinearLayout mLayoutGoods;
 
