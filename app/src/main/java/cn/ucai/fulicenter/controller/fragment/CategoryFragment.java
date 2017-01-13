@@ -76,6 +76,7 @@ public class CategoryFragment extends Fragment {
                     }
                 } else {
                     mSrl.setVisibility(View.GONE);
+
                     mTvNomore.setVisibility(View.VISIBLE);
                 }
             }
