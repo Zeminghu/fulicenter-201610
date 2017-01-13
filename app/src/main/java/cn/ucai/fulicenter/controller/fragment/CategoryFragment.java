@@ -36,18 +36,19 @@ public class CategoryFragment extends Fragment {
     TextView mTvNomore;
 
     IModelNewCategory model;
- CategoryAdapter mAdapter;
+    CategoryAdapter mAdapter;
 
-    ArrayList<CategoryGroupBean> mGroupBeen=new ArrayList<>();
-    ArrayList<ArrayList<CategoryChildBean>> mChildBeen=new ArrayList<>();
+    ArrayList<CategoryGroupBean> mGroupBeen = new ArrayList<>();
+    ArrayList<ArrayList<CategoryChildBean>> mChildBeen = new ArrayList<>();
 
     int groupCount;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_category, container, false);
         ButterKnife.bind(this, layout);
-        mAdapter=new CategoryAdapter(getContext(),mGroupBeen,mChildBeen);
+        mAdapter = new CategoryAdapter(getContext(), mGroupBeen, mChildBeen);
         mElvCategory.setAdapter(mAdapter);
         initView(false);
         initData();
@@ -62,10 +63,12 @@ public class CategoryFragment extends Fragment {
                 if (result != null) {
                     initView(true);
                     ArrayList<CategoryGroupBean> list = ConvertUtils.array2List(result);
-                    mGroupBeen.addAll(list);
-                    for (int i=0;i<list.size();i++){
-                        downloadChildData(list.get(i).getId());
 
+                    mGroupBeen.addAll(list);
+
+                    for (int i = 0; i < list.size(); i++) {
+                        mChildBeen.add(new ArrayList<CategoryChildBean>());
+                        downloadChildData(list.get(i).getId(), i);
                     }
                 } else {
                     initView(false);
@@ -80,17 +83,17 @@ public class CategoryFragment extends Fragment {
         });
     }
 
-    private void downloadChildData(int id) {
+    private void downloadChildData(int id, final int index) {
         model.downData(getContext(), id, new OnCompleteListener<CategoryChildBean[]>() {
             @Override
             public void onSuccess(CategoryChildBean[] result) {
                 groupCount++;
-                if (result!=null){
+                if (result != null) {
                     ArrayList<CategoryChildBean> list = ConvertUtils.array2List(result);
-                    mChildBeen.add(list);
+                    mChildBeen.set(index, list);
                 }
-                if (groupCount==mGroupBeen.size()){
-                    mAdapter.initData(mGroupBeen,mChildBeen);
+                if (groupCount == mGroupBeen.size()) {
+                    mAdapter.initData(mGroupBeen, mChildBeen);
                 }
             }
 
