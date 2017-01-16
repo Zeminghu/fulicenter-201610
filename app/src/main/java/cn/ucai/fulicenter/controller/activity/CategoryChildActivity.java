@@ -6,12 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.application.I;
 import cn.ucai.fulicenter.controller.fragment.NewGoodsFragment;
+import cn.ucai.fulicenter.model.bean.CategoryChildBean;
+import cn.ucai.fulicenter.view.CatFilterButton;
+import cn.ucai.fulicenter.view.MFGT;
 
 public class CategoryChildActivity extends AppCompatActivity {
     NewGoodsFragment mNewGoodsFragment;
@@ -21,17 +26,21 @@ public class CategoryChildActivity extends AppCompatActivity {
     Button mBtnSortPrice;
     @BindView(R.id.btn_sort_addtime)
     Button mBtnSortAddtime;
+    @BindView(R.id.cat_filter)
+    CatFilterButton mCatFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_child);
-
         ButterKnife.bind(this);
         mNewGoodsFragment = new NewGoodsFragment();
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, mNewGoodsFragment)
                 .commit();
+        String groupName = getIntent().getStringExtra(I.CategoryGroup.NAME);
+        ArrayList<CategoryChildBean> list = (ArrayList<CategoryChildBean>) getIntent().getSerializableExtra(I.CategoryChild.DATA);
+        mCatFilter.initCatFileterButton(groupName, list);
     }
 
     @OnClick({R.id.btn_sort_price, R.id.btn_sort_addtime})
@@ -54,10 +63,10 @@ public class CategoryChildActivity extends AppCompatActivity {
             case R.id.btn_sort_addtime:
                 if (addTimeAsc) {
                     sortBy = I.SORT_BY_ADDTIME_ASC;
-                    right=getResources().getDrawable(R.mipmap.arrow_order_up);
+                    right = getResources().getDrawable(R.mipmap.arrow_order_up);
                 } else {
                     sortBy = I.SORT_BY_ADDTIME_DESC;
-                    right=getResources().getDrawable(R.mipmap.arrow_order_down);
+                    right = getResources().getDrawable(R.mipmap.arrow_order_down);
                 }
                 right.setBounds(0, 0, right.getIntrinsicWidth(), right.getIntrinsicHeight());
                 mBtnSortAddtime.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, right, null);
@@ -65,5 +74,10 @@ public class CategoryChildActivity extends AppCompatActivity {
                 break;
         }
         mNewGoodsFragment.sortGoods(sortBy);
+    }
+
+    @OnClick(R.id.backClickArea)
+    public void onClick() {
+        MFGT.finish(this);
     }
 }
