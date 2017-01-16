@@ -50,6 +50,7 @@ public class CategoryFragment extends Fragment {
         ButterKnife.bind(this, layout);
         mAdapter = new CategoryAdapter(getContext(), mGroupBeen, mChildBeen);
         mElvCategory.setAdapter(mAdapter);
+        mElvCategory.setGroupIndicator(null);
         initView(false);
         initData();
         return layout;

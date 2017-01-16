@@ -145,7 +145,7 @@ public void sortGoods(final int sortBy){
     int getPrice(String price){
         int p=0;
         p=Integer.valueOf(price.substring(price.indexOf("￥")+1));
-        L.e("adapter","p="+p);
+        //L.e("adapter","p="+p);
         return p;
     }
     static class GoodsViewHolder extends RecyclerView.ViewHolder {

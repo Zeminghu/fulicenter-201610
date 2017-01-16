@@ -68,6 +68,7 @@ public class NewGoodsFragment extends Fragment {
                 Log.e("NewGoodsFragment", Arrays.toString(result));
                 mSrl.setRefreshing(false);
                 mTvRefresh.setVisibility(View.GONE);
+
                 mAdapter.setMore(true);
                 if (result != null && result.length > 0) {
                     ArrayList<NewGoodsBean> list = ConvertUtils.array2List(result);
