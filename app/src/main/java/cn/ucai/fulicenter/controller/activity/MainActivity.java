@@ -15,9 +15,12 @@ import cn.ucai.fulicenter.controller.fragment.BoutiqueFragment;
 import cn.ucai.fulicenter.controller.fragment.CategoryFragment;
 import cn.ucai.fulicenter.controller.fragment.NewGoodsFragment;
 import cn.ucai.fulicenter.controller.fragment.PersonalFragment;
+import cn.ucai.fulicenter.model.utils.L;
 import cn.ucai.fulicenter.view.MFGT;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity.class.getSimpleName()";
+
     int index, currentIndex;
     RadioButton[] rbs = new RadioButton[5];
     @BindView(R.id.layout_new_good)
@@ -104,9 +107,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setFragmentListener() {
-        getSupportFragmentManager().beginTransaction().show(mFragments[index])
-                .hide(mFragments[currentIndex]).commit();
-
+        L.e(TAG, "setFragment,index=" + index);
+//        getSupportFragmentManager().beginTransaction().show(mFragments[index])
+//                .hide(mFragments[currentIndex]).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, mFragments[index])
+                .show(mFragments[index]).hide(mFragments[currentIndex]).commit();
     }
 
 
