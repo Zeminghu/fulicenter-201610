@@ -96,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                     L.e(TAG,"result="+result);
                     if (result != null) {
                         if (result.isRetMsg()) {
-                            //register success
+                               //register success
                             CommonUtils.showLongToast(R.string.register_success);
                             MFGT.finish(RegisterActivity.this);
                         }else {
