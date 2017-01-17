@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment[] mFragments = new Fragment[5];
     NewGoodsFragment mNewGoodsFragment;
     BoutiqueFragment mBoutiqueFragment;
+
     CategoryFragment mCategoryFragment;
     PersonalFragment mPersonalFragment;
 
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                     MFGT.gotoLogin(this);
                 } else {
                     index = 4;
+
                 }
                 break;
         }
@@ -107,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setFragmentListener() {
+
         L.e(TAG, "setFragment,index=" + index);
 //        getSupportFragmentManager().beginTransaction().show(mFragments[index])
 //                .hide(mFragments[currentIndex]).commit();
