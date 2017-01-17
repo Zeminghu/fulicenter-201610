@@ -20,7 +20,7 @@ public class SharePrefrenceUtils {
 
     public static SharePrefrenceUtils getInstance(Context context) {
         if (instance == null) {
-instance=new SharePrefrenceUtils(context);
+            instance = new SharePrefrenceUtils(context);
         }
         return instance;
     }

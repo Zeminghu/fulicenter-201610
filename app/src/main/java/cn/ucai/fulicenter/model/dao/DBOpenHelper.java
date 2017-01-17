@@ -15,10 +15,10 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                     + UserDao.USER_COLUMN_NAME + " TEXT PRIMARY KEY, "
                     + UserDao.USER_COLUMN_NICK + " TEXT,"
                     + UserDao.USER_COLUMN_AVATAR + " INTEGER,"
-                    + UserDao.USER_COLUMN_AVATAR_PATH + " TEXT,";
-                   // +UserDao.USER_COLUMN_AVATAR_TYPE+" INTEGER,"
-                   // +UserDao.USER_COLUMN_AVATAR_SUFFIX+" TEXT,"
-                    //+UserDao.USER_COLUMN_AVATAR_UPDATE_TIME+" TEXT);";
+                    + UserDao.USER_COLUMN_AVATAR_PATH + " TEXT,"
+                    + UserDao.USER_COLUMN_AVATAR_TYPE +" INTEGER,"
+                    + UserDao.USER_COLUMN_AVATAR_SUFFIX+" TEXT,"
+                    + UserDao.USER_COLUMN_AVATAR_UPDATE_TIME+" TEXT);";
 
     private static DBOpenHelper instance;
 
