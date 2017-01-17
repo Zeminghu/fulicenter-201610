@@ -14,6 +14,7 @@ import cn.ucai.fulicenter.application.FuLiCenterApplication;
 import cn.ucai.fulicenter.controller.fragment.BoutiqueFragment;
 import cn.ucai.fulicenter.controller.fragment.CategoryFragment;
 import cn.ucai.fulicenter.controller.fragment.NewGoodsFragment;
+import cn.ucai.fulicenter.controller.fragment.PersonalFragment;
 import cn.ucai.fulicenter.view.MFGT;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,7 +34,9 @@ public class MainActivity extends AppCompatActivity {
     Fragment[] mFragments = new Fragment[5];
     NewGoodsFragment mNewGoodsFragment;
     BoutiqueFragment mBoutiqueFragment;
-CategoryFragment mCategoryFragment;
+    CategoryFragment mCategoryFragment;
+    PersonalFragment mPersonalFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,11 +56,12 @@ CategoryFragment mCategoryFragment;
         mNewGoodsFragment = new NewGoodsFragment();
         mBoutiqueFragment = new BoutiqueFragment();
         mCategoryFragment = new CategoryFragment();
+        mPersonalFragment = new PersonalFragment();
 
         mFragments[0] = mNewGoodsFragment;
         mFragments[1] = mBoutiqueFragment;
         mFragments[2] = mCategoryFragment;
-
+        mFragments[4] = mPersonalFragment;
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, mNewGoodsFragment)
@@ -84,9 +88,9 @@ CategoryFragment mCategoryFragment;
                 index = 3;
                 break;
             case R.id.layout_personal_center:
-                if (FuLiCenterApplication.getUser()==null){
+                if (FuLiCenterApplication.getUser() == null) {
                     MFGT.gotoLogin(this);
-                }else {
+                } else {
                     index = 4;
                 }
                 break;
@@ -102,6 +106,7 @@ CategoryFragment mCategoryFragment;
     private void setFragmentListener() {
         getSupportFragmentManager().beginTransaction().show(mFragments[index])
                 .hide(mFragments[currentIndex]).commit();
+
     }
 
 

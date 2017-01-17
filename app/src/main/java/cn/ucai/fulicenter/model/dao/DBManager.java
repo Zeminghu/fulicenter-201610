@@ -51,7 +51,7 @@ public class DBManager {
 
     public User getUser(String username) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String sql = "SELECT*FROM" + UserDao.USER_TABLE_NAME
+        String sql = " SELECT*FROM " + UserDao.USER_TABLE_NAME
                 + " WHERE " + UserDao.USER_COLUMN_NAME + "=?";
         if (db.isOpen()) {
             Cursor cursor = db.rawQuery(sql, new String[]{username});
