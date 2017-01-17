@@ -2,6 +2,7 @@ package cn.ucai.fulicenter.model.net;
 
 import android.content.Context;
 
+import cn.ucai.fulicenter.controller.activity.LoginActivity;
 import cn.ucai.fulicenter.model.bean.NewGoodsBean;
 import cn.ucai.fulicenter.model.bean.User;
 import cn.ucai.fulicenter.model.utils.OkHttpUtils;
@@ -11,6 +12,11 @@ import cn.ucai.fulicenter.model.utils.OkHttpUtils;
  */
 
 public interface IModelUser {
-    void downData(Context context, String username,String password, OnCompleteListener<String> listener);
+    void login(Context context, String username,String password, OnCompleteListener<String> listener);
     void register(Context context, String username, String usernick, String password,OnCompleteListener<String> listener);
+
+
+
+
+
 }

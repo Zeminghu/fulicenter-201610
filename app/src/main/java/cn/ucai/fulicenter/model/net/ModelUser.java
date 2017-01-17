@@ -3,6 +3,7 @@ package cn.ucai.fulicenter.model.net;
 import android.content.Context;
 
 import cn.ucai.fulicenter.application.I;
+import cn.ucai.fulicenter.controller.activity.LoginActivity;
 import cn.ucai.fulicenter.model.bean.User;
 import cn.ucai.fulicenter.model.utils.MD5;
 import cn.ucai.fulicenter.model.utils.OkHttpUtils;
@@ -13,7 +14,7 @@ import cn.ucai.fulicenter.model.utils.OkHttpUtils;
 
 public class ModelUser implements IModelUser {
     @Override
-    public void downData(Context context, String username, String password, OnCompleteListener<String> listener) {
+    public void login(Context context, String username, String password, OnCompleteListener<String> listener) {
         OkHttpUtils<String> utils=new OkHttpUtils<>(context);
         utils.setRequestUrl(I.REQUEST_LOGIN)
                 .addParam(I.User.USER_NAME,username)
@@ -33,4 +34,6 @@ public class ModelUser implements IModelUser {
                 .targetClass(String.class)
                 .execute(listener);
     }
+
+
 }
