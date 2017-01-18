@@ -32,9 +32,9 @@ import cn.ucai.fulicenter.view.MFGT;
  */
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
-    @BindView(R.id.etUserName)
+    @BindView(R.id.username)
     EditText etUserName;
-    @BindView(R.id.etPassword)
+    @BindView(R.id.password)
     EditText etPassword;
     IModelUser model;
 
@@ -45,16 +45,16 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.ivReturn, R.id.btnLogin, R.id.btnRegister})
+    @OnClick({R.id.backClickArea, R.id.btn_login, R.id.btn_register})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.ivReturn:
+            case R.id.backClickArea:
                 MFGT.finish(this);
                 break;
-            case R.id.btnLogin:
+            case R.id.btn_login:
                 checkInput();
                 break;
-            case R.id.btnRegister:
+            case R.id.btn_register:
                 MFGT.gotoRegister(this);
                 break;
         }

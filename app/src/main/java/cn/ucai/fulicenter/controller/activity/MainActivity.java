@@ -145,6 +145,10 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         L.e(TAG,"onResume,currentIndex="+currentIndex+",index="+index
                 +",user="+FuLiCenterApplication.getUser());
+        if (index==4 && FuLiCenterApplication.getUser()==null){
+            index=0;
+        }
+        setFragmentListener();
         setRadioStatus();
     }
 

@@ -19,6 +19,7 @@ import cn.ucai.fulicenter.model.net.OnCompleteListener;
 import cn.ucai.fulicenter.model.utils.CommonUtils;
 import cn.ucai.fulicenter.model.utils.L;
 import cn.ucai.fulicenter.model.utils.ResultUtils;
+import cn.ucai.fulicenter.view.DisplayUtils;
 import cn.ucai.fulicenter.view.MFGT;
 
 /**
@@ -26,13 +27,13 @@ import cn.ucai.fulicenter.view.MFGT;
  */
 public class RegisterActivity extends AppCompatActivity {
     private static final String TAG=RegisterActivity.class.getSimpleName();
-    @BindView(R.id.etUserName)
+    @BindView(R.id.username)
     EditText etUserName;
-    @BindView(R.id.etNick)
+    @BindView(R.id.nick)
     EditText etNick;
-    @BindView(R.id.etPassword)
+    @BindView(R.id.password)
     EditText etPassword;
-    @BindView(R.id.etConfirmPassword)
+    @BindView(R.id.confirm_password)
     EditText etConfirmPassword;
 
     IModelUser model;
@@ -42,9 +43,10 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
+        DisplayUtils.initBackWithTitle(this,"用户注册");
     }
 
-    @OnClick({R.id.ivReturn, R.id.btnRegister})
+   /* @OnClick({R.id.ivReturn, R.id.btnRegister})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ivReturn:
@@ -54,9 +56,10 @@ public class RegisterActivity extends AppCompatActivity {
                 checkInput();
                 break;
         }
-    }
+    }*/
 
-    private void checkInput() {
+    @OnClick(R.id.btn_register)
+    public void checkInput() {
         String username = etUserName.getText().toString().trim();
         String usernick = etNick.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
