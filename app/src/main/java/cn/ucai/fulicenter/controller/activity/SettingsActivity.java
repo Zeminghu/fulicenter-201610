@@ -53,5 +53,6 @@ public class SettingsActivity extends AppCompatActivity {
         FuLiCenterApplication.setUser(null);
         SharePrefrenceUtils.getInstance(this).removeUser();
         MFGT.gotoLogin(this);
+        finish();
     }
 }
