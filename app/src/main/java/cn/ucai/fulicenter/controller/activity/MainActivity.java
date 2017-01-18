@@ -2,6 +2,7 @@ package cn.ucai.fulicenter.controller.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
@@ -37,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     Fragment[] mFragments = new Fragment[5];
     NewGoodsFragment mNewGoodsFragment;
     BoutiqueFragment mBoutiqueFragment;
-
     CategoryFragment mCategoryFragment;
     PersonalFragment mPersonalFragment;
 
@@ -71,9 +71,11 @@ public class MainActivity extends AppCompatActivity {
                 .add(R.id.fragment_container, mNewGoodsFragment)
                 .add(R.id.fragment_container, mBoutiqueFragment)
                 .add(R.id.fragment_container, mCategoryFragment)
+               // .add(R.id.fragment_container,mPersonalFragment)
                 .show(mNewGoodsFragment)
                 .hide(mBoutiqueFragment)
                 .hide(mCategoryFragment)
+                //.hide(mPersonalFragment)
                 .commit();
     }
 
@@ -100,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
+
 //        setRadioStatus();
         setFragmentListener();
         if (index != currentIndex) {
@@ -111,10 +114,16 @@ public class MainActivity extends AppCompatActivity {
     private void setFragmentListener() {
 
         L.e(TAG, "setFragment,index=" + index);
+
 //        getSupportFragmentManager().beginTransaction().show(mFragments[index])
-//                .hide(mFragments[currentIndex]).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, mFragments[index])
-                .show(mFragments[index]).hide(mFragments[currentIndex]).commit();
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.hide(mFragments[currentIndex]);
+        if(!mFragments[index].isAdded()){
+            ft.add(R.id.fragment_container, mFragments[index]);
+        }
+        ft.show(mFragments[index]).commit();
+
     }
 
 

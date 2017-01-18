@@ -4,6 +4,7 @@ package cn.ucai.fulicenter.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ import cn.ucai.fulicenter.controller.activity.CategoryChildActivity;
 import cn.ucai.fulicenter.controller.activity.GoodsDetailsActivity;
 import cn.ucai.fulicenter.controller.activity.LoginActivity;
 import cn.ucai.fulicenter.controller.activity.RegisterActivity;
+import cn.ucai.fulicenter.controller.activity.SettingsActivity;
 import cn.ucai.fulicenter.model.bean.BoutiqueBean;
 import cn.ucai.fulicenter.model.bean.CategoryChildBean;
 
@@ -62,5 +64,9 @@ startActivity(context,LoginActivity.class);
 
     public static void gotoRegister(LoginActivity loginActivity) {
         startActivity(loginActivity,RegisterActivity.class);
+    }
+
+    public static void gotoSettings(Activity activity) {
+        startActivity(activity, SettingsActivity.class);
     }
 }
