@@ -2,6 +2,7 @@ package cn.ucai.fulicenter.controller.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         ButterKnife.bind(this);
+
         DisplayUtils.initBackWithTitle(this,"设置");
         initData();
     }
@@ -57,4 +59,12 @@ public class SettingsActivity extends AppCompatActivity {
         MFGT.gotoLogin(this);
         finish();
     }
+ @OnClick(R.id.layout_user_profile_nickname)
+    public void updateNick(){
+     String nick=mTvUserProfileNick.getText().toString().trim();
+     if (TextUtils.isEmpty(nick)){
+
+     }
+ }
+
 }
