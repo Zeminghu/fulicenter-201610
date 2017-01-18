@@ -107,6 +107,7 @@ public class User {
         return "User{" +
                 "muserName='" + muserName + '\'' +
                 ", muserNick='" + muserNick + '\'' +
+
                 ", mavatarId=" + mavatarId +
                 ", mavatarPath='" + mavatarPath + '\'' +
                 ", mavatarSuffix='" + mavatarSuffix + '\'' +
