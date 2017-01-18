@@ -30,6 +30,8 @@ import cn.ucai.fulicenter.model.utils.ResultUtils;
 import cn.ucai.fulicenter.view.DisplayUtils;
 import cn.ucai.fulicenter.view.MFGT;
 
+import static cn.ucai.fulicenter.application.FuLiCenterApplication.getUser;
+
 public class SettingsActivity extends AppCompatActivity {
 
     @BindView(R.id.iv_user_profile_avatar)
@@ -53,7 +55,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        User user = FuLiCenterApplication.getUser();
+        User user = getUser();
         if (user != null) {
             loadUserInfo(user);
         } else {
@@ -90,27 +92,27 @@ public class SettingsActivity extends AppCompatActivity {
     public void onClickAvatar() {
         mOnSetAvatarListener = new OnSetAvatarListener(this,
                 R.id.layout_user_profile_avatar,
-                FuLiCenterApplication.getUser().getMuserName(),
+                getUser().getMuserName(),
                 I.AVATAR_TYPE_USER_PATH);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
+        if (resultCode != RESULT_OK) {
             return;
         }
         if (requestCode == I.REQUEST_CODE_NICK) {
-            mTvUserProfileNick.setText(FuLiCenterApplication.getUser().getMuserNick());
+            mTvUserProfileNick.setText(getUser().getMuserNick());
         } else if (requestCode == OnSetAvatarListener.REQUEST_CROP_PHOTO) {
             uploadAvatar();
-        } else {
-            mOnSetAvatarListener.setAvatar(requestCode, data, mIvUserProfileAvatar);
         }
+            mOnSetAvatarListener.setAvatar(requestCode, data, mIvUserProfileAvatar);
+
     }
 
     private void uploadAvatar() {
-        User user = FuLiCenterApplication.getUser();
+        User user = getUser();
         model=new ModelUser();
         final ProgressDialog dialog = new ProgressDialog(this);
         dialog.setMessage(getString(R.string.update_user_avatar));
