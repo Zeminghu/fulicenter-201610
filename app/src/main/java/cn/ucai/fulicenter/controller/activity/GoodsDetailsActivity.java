@@ -200,6 +200,7 @@ setCollect(user);
 
 @OnClick(R.id.iv_good_cart)
     public void addCart(){
+
     User user=FuLiCenterApplication.getUser();
     userModel=new ModelUser();
     userModel.updateCart(this, I.ACTION_CART_ADD, user.getMuserName(), goodsId, 1, 0, new OnCompleteListener<MessageBean>() {

@@ -28,6 +28,7 @@ public class FuLiCenterApplication extends Application {
     private static HashMap<Integer,CartBean> myCartList=new HashMap<>();
 
     public static HashMap<Integer, CartBean> getMyCartList() {
+
         return myCartList;
     }
 

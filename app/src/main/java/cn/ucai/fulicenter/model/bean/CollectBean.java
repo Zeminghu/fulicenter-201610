@@ -98,6 +98,7 @@ public class CollectBean implements Serializable {
 
     @Override
     public String toString() {
+
         return "CollectBean{" +
                 "id=" + id +
                 ", userName=" + userName +
