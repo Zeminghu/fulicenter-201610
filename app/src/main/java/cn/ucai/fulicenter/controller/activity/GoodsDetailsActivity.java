@@ -19,7 +19,9 @@ import cn.ucai.fulicenter.model.bean.GoodsDetailsBean;
 import cn.ucai.fulicenter.model.bean.MessageBean;
 import cn.ucai.fulicenter.model.bean.User;
 import cn.ucai.fulicenter.model.net.IModelGoods;
+import cn.ucai.fulicenter.model.net.IModelUser;
 import cn.ucai.fulicenter.model.net.ModelGoods;
+import cn.ucai.fulicenter.model.net.ModelUser;
 import cn.ucai.fulicenter.model.net.OnCompleteListener;
 import cn.ucai.fulicenter.model.utils.CommonUtils;
 import cn.ucai.fulicenter.model.utils.L;
@@ -35,6 +37,7 @@ public class GoodsDetailsActivity extends AppCompatActivity {
     private static final String TAG = GoodsDetailsActivity.class.getSimpleName();
     int goodsId = 0;
     IModelGoods model;
+    IModelUser userModel;
     @BindView(R.id.tv_good_name_english)
     TextView mTvGoodNameEnglish;
     @BindView(R.id.tv_good_name)
@@ -195,5 +198,23 @@ setCollect(user);
         }
     }
 
+@OnClick(R.id.iv_good_cart)
+    public void addCart(){
+    User user=FuLiCenterApplication.getUser();
+    userModel=new ModelUser();
+    userModel.updateCart(this, I.ACTION_CART_ADD, user.getMuserName(), goodsId, 1, 0, new OnCompleteListener<MessageBean>() {
+        @Override
+        public void onSuccess(MessageBean result) {
+            if(result!=null && result.isSuccess()){
+    //            FuLiCenterApplication.getMyCartList().put(goodsId,null);
+               CommonUtils.showLongToast(R.string.add_goods_success);
+            }
+        }
 
+        @Override
+        public void onError(String error) {
+
+        }
+    });
+}
 }
