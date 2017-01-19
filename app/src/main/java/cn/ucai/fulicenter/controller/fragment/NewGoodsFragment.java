@@ -128,7 +128,17 @@ public class NewGoodsFragment extends Fragment {
     }
 
 
-
+    private void setPullDownListener() {
+        mSrl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mSrl.setRefreshing(true);
+                mTvRefresh.setVisibility(View.VISIBLE);
+                pageId=1;
+                initData(I.ACTION_PULL_DOWN);
+            }
+        });
+    }
     private void setPullUpListener() {
         mRv.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -142,6 +152,7 @@ public class NewGoodsFragment extends Fragment {
                     initData(I.ACTION_PULL_UP);
                 }
             }
+
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -154,17 +165,7 @@ public class NewGoodsFragment extends Fragment {
         mAdapter.sortGoods(sortBy);
     }
 
-    private void setPullDownListener() {
-        mSrl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mSrl.setRefreshing(true);
-                mTvRefresh.setVisibility(View.VISIBLE);
-                pageId=1;
-                initData(I.ACTION_PULL_DOWN);
-            }
-        });
-    }
+
     }
 
 
