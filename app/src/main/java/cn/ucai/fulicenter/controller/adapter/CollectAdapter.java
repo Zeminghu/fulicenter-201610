@@ -51,7 +51,7 @@ public class CollectAdapter extends RecyclerView.Adapter {
         mList = new ArrayList<>();
         mList.addAll(list);
         model = new ModelGoods();
-user= FuLiCenterApplication.getUser();
+        user = FuLiCenterApplication.getUser();
     }
 
     public boolean isMore() {
@@ -120,6 +120,12 @@ user= FuLiCenterApplication.getUser();
         return isMore ? R.string.load_more : R.string.no_more;
     }
 
+    public void removeItem(int goodsId) {
+        if (goodsId != 0) {
+            mList.remove(new CollectBean(goodsId));
+            notifyDataSetChanged();
+        }
+    }
     class CollectViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.ivGoodsThumb)
         ImageView mIvGoodsThumb;
@@ -161,7 +167,7 @@ user= FuLiCenterApplication.getUser();
                     I.ACTION_DELETE_COLLECT, new OnCompleteListener<MessageBean>() {
                         @Override
                         public void onSuccess(MessageBean result) {
-                            if (result!=null && result.isSuccess()){
+                            if (result != null && result.isSuccess()) {
                                 mList.remove(itemPosition);
                                 notifyDataSetChanged();
                             }
