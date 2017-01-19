@@ -4,18 +4,23 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ucai.fulicenter.R;
+import cn.ucai.fulicenter.application.FuLiCenterApplication;
 import cn.ucai.fulicenter.application.I;
 import cn.ucai.fulicenter.model.bean.AlbumsBean;
 import cn.ucai.fulicenter.model.bean.GoodsDetailsBean;
+import cn.ucai.fulicenter.model.bean.MessageBean;
+import cn.ucai.fulicenter.model.bean.User;
 import cn.ucai.fulicenter.model.net.IModelGoods;
 import cn.ucai.fulicenter.model.net.ModelGoods;
 import cn.ucai.fulicenter.model.net.OnCompleteListener;
+import cn.ucai.fulicenter.model.utils.CommonUtils;
 import cn.ucai.fulicenter.model.utils.L;
 import cn.ucai.fulicenter.view.FlowIndicator;
 import cn.ucai.fulicenter.view.MFGT;
@@ -44,6 +49,10 @@ public class GoodsDetailsActivity extends AppCompatActivity {
     @BindView(R.id.wv_good_brief)
     WebView mWvGoodBrief;
 
+    boolean isCollect;
+    @BindView(R.id.iv_good_collect)
+    ImageView mIvGoodCollect;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,16 +71,16 @@ public class GoodsDetailsActivity extends AppCompatActivity {
         model.downData(this, goodsId, new OnCompleteListener<GoodsDetailsBean>() {
             @Override
             public void onSuccess(GoodsDetailsBean result) {
-                if(result!=null){
+                if (result != null) {
                     showGoodsDetail(result);
-                }else{
+                } else {
                     MFGT.finish(GoodsDetailsActivity.this);
                 }
             }
 
             @Override
             public void onError(String error) {
-                L.e(TAG,"error="+error);
+                L.e(TAG, "error=" + error);
             }
         });
     }
@@ -81,24 +90,24 @@ public class GoodsDetailsActivity extends AppCompatActivity {
         mTvGoodNameEnglish.setText(goods.getGoodsEnglishName());
         mTvGoodPriceCurrent.setText(goods.getCurrencyPrice());
         mTvGoodPriceShop.setText(goods.getShopPrice());
-        mSalv.startPlayLoop(mIndicator,getAlbumUrl(goods),getAlbumCount(goods));
-        mWvGoodBrief.loadDataWithBaseURL(null,goods.getGoodsBrief(),I.TEXT_HTML,I.UTF_8,null);
+        mSalv.startPlayLoop(mIndicator, getAlbumUrl(goods), getAlbumCount(goods));
+        mWvGoodBrief.loadDataWithBaseURL(null, goods.getGoodsBrief(), I.TEXT_HTML, I.UTF_8, null);
 
     }
 
     private int getAlbumCount(GoodsDetailsBean goods) {
-        if(goods!=null && goods.getProperties()!=null && goods.getProperties().length >0){
+        if (goods != null && goods.getProperties() != null && goods.getProperties().length > 0) {
             return goods.getProperties()[0].getAlbums().length;
         }
         return 0;
     }
 
     private String[] getAlbumUrl(GoodsDetailsBean goods) {
-        if(goods!=null && goods.getProperties()!=null && goods.getProperties().length >0){
+        if (goods != null && goods.getProperties() != null && goods.getProperties().length > 0) {
             AlbumsBean[] albums = goods.getProperties()[0].getAlbums();
-            if(albums!=null && albums.length>0){
+            if (albums != null && albums.length > 0) {
                 String[] urls = new String[albums.length];
-                for (int i=0;i<albums.length;i++){
+                for (int i = 0; i < albums.length; i++) {
                     urls[i] = albums[i].getImgUrl();
                 }
                 return urls;
@@ -111,4 +120,77 @@ public class GoodsDetailsActivity extends AppCompatActivity {
     public void onClick() {
         MFGT.finish(this);
     }
+@Override
+    protected void onResume() {
+        super.onResume();
+        initCollectStatus();
+
+    }
+
+    @OnClick(R.id.iv_good_collect)
+    public void setCollectListener(){
+        mIvGoodCollect.setEnabled(false);
+       User user=FuLiCenterApplication.getUser();
+        if (user!=null){
+setCollect(user);
+        }else{
+            MFGT.gotoLogin(this);
+            mIvGoodCollect.setEnabled(true);
+        }
+    }
+
+    private void setCollect(User user) {
+        model.setCollect(this, goodsId, user.getMuserName(),
+                isCollect ? I.ACTION_DELETE_COLLECT : I.ACTION_ADD_COLLECT,
+                new OnCompleteListener<MessageBean>() {
+                    @Override
+                    public void onSuccess(MessageBean result) {
+                        if (result!=null && result.isSuccess()){
+                            isCollect=!isCollect;
+                            setCollectStatus();
+                            CommonUtils.showLongToast(result.getMsg());
+                        }
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        mIvGoodCollect.setEnabled(true);
+                    }
+                });
+    }
+
+    private void setCollectStatus() {
+        if (isCollect) {
+            mIvGoodCollect.setImageResource(R.mipmap.bg_collect_out);
+        } else {
+            mIvGoodCollect.setImageResource(R.mipmap.bg_collect_in);
+        }
+        mIvGoodCollect.setEnabled(true);
+    }
+
+    private void initCollectStatus() {
+        mIvGoodCollect.setEnabled(false);
+        User user = FuLiCenterApplication.getUser();
+        if (user != null) {
+            model.isCollect(this, goodsId, user.getMuserName(), new OnCompleteListener<MessageBean>() {
+                @Override
+                public void onSuccess(MessageBean result) {
+                    if (result != null && result.isSuccess()) {
+                        isCollect = true;
+                    } else {
+                        isCollect = false;
+                    }
+                    setCollectStatus();
+                }
+
+                @Override
+                public void onError(String error) {
+                    isCollect = false;
+                    setCollectStatus();
+                }
+            });
+        }
+    }
+
+
 }

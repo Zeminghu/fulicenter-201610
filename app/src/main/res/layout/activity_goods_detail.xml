@@ -28,7 +28,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/iv_good_collect">
+            android:layout_toLeftOf="@+id/iv_good_collect">
             <ImageView
                 android:id="@+id/iv_good_cart"
                 android:layout_width="wrap_content"

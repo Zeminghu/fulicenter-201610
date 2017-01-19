@@ -22,7 +22,7 @@ import cn.ucai.fulicenter.model.utils.L;
 import cn.ucai.fulicenter.view.MFGT;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity.class.getSimpleName()";
+  //  private static final String TAG = "MainActivity.class.getSimpleName()";
 
     int index, currentIndex;
     RadioButton[] rbs = new RadioButton[5];
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setFragmentListener() {
 
-        L.e(TAG, "setFragment,index=" + index);
+ //       L.e(TAG, "setFragment,index=" + index);
 
 //        getSupportFragmentManager().beginTransaction().show(mFragments[index])
 
@@ -143,8 +143,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        L.e(TAG,"onResume,currentIndex="+currentIndex+",index="+index
-                +",user="+FuLiCenterApplication.getUser());
+       /* L.e(TAG,"onResume,currentIndex="+currentIndex+",index="+index
+                +",user="+FuLiCenterApplication.getUser());*/
         if (index==4 && FuLiCenterApplication.getUser()==null){
             index=0;
         }
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-       L.e(TAG,"onActivityResult,resultCode="+resultCode+",requestCode="+requestCode);
+     //  L.e(TAG,"onActivityResult,resultCode="+resultCode+",requestCode="+requestCode);
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode==RESULT_OK && requestCode== I.REQUEST_CODE_LOGIN){
             index=4;
