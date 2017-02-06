@@ -25,7 +25,7 @@ public class FuLiCenterApplication extends Application {
     }
 
     private static User user;
-    private static HashMap<Integer,CartBean> myCartList=new HashMap<>();
+    /*private static HashMap<Integer,CartBean> myCartList=new HashMap<>();
 
     public static HashMap<Integer, CartBean> getMyCartList() {
 
@@ -34,7 +34,7 @@ public class FuLiCenterApplication extends Application {
 
     public static void setMyCartList(HashMap<Integer, CartBean> myCartList) {
         FuLiCenterApplication.myCartList = myCartList;
-    }
+    }*/
 
     public static User getUser() {
         return user;
