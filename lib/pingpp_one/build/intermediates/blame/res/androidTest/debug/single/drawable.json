@@ -1,11 +1,11 @@
 [
     {
-        "merged": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\pingpp_progressbar.xml",
-        "source": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\bundles\\debug\\res\\drawable\\pingpp_progressbar.xml"
-    },
-    {
         "merged": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\pingpp_failed.png",
         "source": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\bundles\\debug\\res\\drawable\\pingpp_failed.png"
+    },
+    {
+        "merged": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\pingpp_progressbar.xml",
+        "source": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\bundles\\debug\\res\\drawable\\pingpp_progressbar.xml"
     },
     {
         "merged": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\pingpp_alipay.png",

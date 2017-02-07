@@ -65,7 +65,7 @@ public class CartFragment extends Fragment {
     TextView mTvCartSavePrice;
     UpdateCartReceiver mReceiver;
     int sumPrice = 0;
-    int payPrice=0;
+    int payPrice = 0;
 
     private void initData(final int action) {
         if (user != null) {
@@ -137,9 +137,9 @@ public class CartFragment extends Fragment {
     }
 
     private void setReceiverListener() {
-        mReceiver=new UpdateCartReceiver();
-        IntentFilter filter=new IntentFilter(I.BROADCAST_UPDATA_CART);
-        getContext().registerReceiver(mReceiver,filter);
+        mReceiver = new UpdateCartReceiver();
+        IntentFilter filter = new IntentFilter(I.BROADCAST_UPDATA_CART);
+        getContext().registerReceiver(mReceiver, filter);
     }
 
 
@@ -166,8 +166,8 @@ public class CartFragment extends Fragment {
     }
 
     private void setPrice() {
-     sumPrice = 0;
-        payPrice=0;
+        sumPrice = 0;
+        payPrice = 0;
         int savePrice = 0;
         if (cartList != null && cartList.size() > 0) {
             for (CartBean cart : cartList) {
@@ -181,8 +181,8 @@ public class CartFragment extends Fragment {
         }
         mTvCartSumPrice.setText("合计: ¥" + sumPrice);
         mTvCartSavePrice.setText("节省: ¥" + savePrice);
-mAdapter.notifyDataSetChanged();
-        payPrice=sumPrice-savePrice;
+        mAdapter.notifyDataSetChanged();
+        payPrice = sumPrice - savePrice;
     }
 
 
@@ -192,18 +192,19 @@ mAdapter.notifyDataSetChanged();
         return p;
     }
 
-class UpdateCartReceiver extends BroadcastReceiver {
+    class UpdateCartReceiver extends BroadcastReceiver {
 
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        setPrice();
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            setPrice();
+        }
     }
-}
+
     @OnClick(R.id.tv_cart_buy)
-    public void onBuyClick(){
-        if (sumPrice>0){
-            MFGT.gotoOrder(getActivity(),payPrice);
-        }else{
+    public void onBuyClick() {
+        if (sumPrice > 0) {
+            MFGT.gotoOrder(getActivity(), payPrice);
+        } else {
             CommonUtils.showLongToast(R.string.order_nothing);
         }
     }
@@ -211,7 +212,7 @@ class UpdateCartReceiver extends BroadcastReceiver {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mReceiver!=null){
+        if (mReceiver != null) {
             getContext().unregisterReceiver(mReceiver);
         }
     }

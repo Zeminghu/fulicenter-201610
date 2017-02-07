@@ -56,24 +56,24 @@
         "source": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\res\\drawable\\pingpp_shopping.png"
     },
     {
-        "merged": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\debug\\drawable\\pingpp_unionpay.png",
-        "source": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\res\\drawable\\pingpp_unionpay.png"
-    },
-    {
         "merged": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\debug\\drawable\\pingpp_wechat.png",
         "source": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\res\\drawable\\pingpp_wechat.png"
+    },
+    {
+        "merged": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\debug\\drawable\\pingpp_unionpay.png",
+        "source": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\res\\drawable\\pingpp_unionpay.png"
     },
     {
         "merged": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\debug\\drawable\\pingpp_success.png",
         "source": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\res\\drawable\\pingpp_success.png"
     },
     {
-        "merged": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\debug\\drawable\\pingpp_failed.png",
-        "source": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\res\\drawable\\pingpp_failed.png"
-    },
-    {
         "merged": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\debug\\drawable\\pingpp_baidupay.png",
         "source": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\res\\drawable\\pingpp_baidupay.png"
+    },
+    {
+        "merged": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\debug\\drawable\\pingpp_failed.png",
+        "source": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\res\\drawable\\pingpp_failed.png"
     },
     {
         "merged": "D:\\Android projects2\\201610\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\debug\\drawable\\pingpp_nocard.png",
